@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Manju Yadav</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+    }
+    nav {
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    nav a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover {
+      color: #1d4ed8;
+    }
+    header {
+      text-align: center;
+      padding: 3rem 2rem 1rem 2rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #1e40af;
+    }
+    .projects {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 1.2rem;
+    }
+    .card-body h3 {
+      margin-top: 0;
+      color: #1e3a8a;
+    }
+    .card-body p {
+      font-size: 0.95rem;
+    }
+    .github-button {
+      margin: 1rem;
+      text-align: center;
+    }
+    .github-button a {
+      background: #2563eb;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .github-button a:hover {
+      background: #1d4ed8;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+</nav>
+
+<header>
+  <h1>My Projects</h1>
+  <p>A selection of projects that showcase my skills in data science, NLP, and AI.</p>
+</header>
+
+<section class="projects">
+
+  <div class="card">
+    <img src="/Users/ak/Downloads/portfolio-website/images/recommendation engine.jpg" alt="Recommendation Engine">
+    <div class="card-body">
+      <h3>Data Anonymization Recommendation Engine</h3>
+      <p>Developed a Random Forest-based engine using TF-IDF to suggest anonymization strategies, reducing manual effort by 30%.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/credit_card_default.jpg" alt="Subscription Level Analysis">
+    <div class="card-body">
+      <h3>Subscription Level Analysis</h3>
+      <p> Analyzed factors influencing subscription levels across property listings in various cities. Performed feature engineering, data cleaning, and built machine learning models to predict subscription behaviors.</p>
+    </div>
+    <div class="github-button">
+      <a href="https://github.com/manju2feb" target="_blank">View GitHub Profile</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/credit_card_default.jpg" alt="Default Credit card">
+    <div class="card-body">
+      <h3>Credit Card Default Prediction</h3>
+      <p>Developed machine learning models on the "Default of Credit Card Clients" dataset to predict the likelihood of customers defaulting. Used Logistic Regression and Random Forest to optimize classification performance.</p>
+    </div>
+    <div class="github-button">
+      <a href="https://github.com/manju2feb" target="_blank">View GitHub Profile</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/document_similarity.jpg" alt="Document Similarity">
+    <div class="card-body">
+      <h3>Document Similarity Pipeline</h3>
+      <p>Created a pipeline using Sentence Transformers to evaluate sentence alignment between CSR and synopsis, increasing accuracy by 20%.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/nlp_pipeline.jpg" alt="NLP Pipeline">
+    <div class="card-body">
+      <h3>Automated NLP Reference Detection</h3>
+      <p>Built a sentence similarity matching pipeline with spaCy and Transformers, deployed via GitLab CI/CD.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/clinical_study.jpg" alt="Clinical Study">
+    <div class="card-body">
+      <h3>Clinical Study Subgroup Analysis</h3>
+      <p>Analyzed pre-Stelara vs. bio-failure subgroups to optimize trial inclusion/exclusion strategies and study design efficiency.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1581090700227-1e8a7b192b52?auto=compress&cs=tinysrgb&w=600" alt="More Coming Soon">
+    <div class="card-body">
+      <h3>More Coming Soon</h3>
+      <p>Exciting new projects in generative AI, multi-agent systems, and intelligent automation are on the way.</p>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  &copy; 2025 Manju Yadav. All rights reserved.
+</footer>
+
+</body>
+</html>
