@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommendation Engine | Manju Yadav</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <style>
+    body { margin: 0; font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; }
+    nav { background: #ffffff; display: flex; justify-content: center; gap: 2rem; padding: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    nav a { color: #2563eb; text-decoration: none; font-weight: 600; }
+    nav a:hover { color: #1d4ed8; }
+    header { text-align: center; padding: 3rem 2rem 1rem 2rem; }
+    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #1e40af; }
+    .content { max-width: 900px; margin: auto; padding: 2rem; line-height: 1.6; white-space: pre-wrap; }
+    h2 { margin-top: 2rem; color: #1f2937; }
+    code, pre { background: #f3f4f6; padding: 1rem; border-radius: 8px; display: block; overflow-x: auto; font-size: 0.9rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+    th, td { border: 1px solid #ccc; padding: 0.75rem; text-align: left; }
+    th { background: #e5e7eb; }
+    footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: #6b7280; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+</nav>
+
+<header>
+  <h1>Building a Smarter Data Anonymization Recommendation Engine</h1>
+  <p><em>By Manju Yadav</em></p>
+</header>
+
+<div class="content">
+
+<h2>🔍 Project Overview</h2>
+<p>
+In today’s landscape of data privacy, smart anonymization isn’t a luxury—it’s a necessity. This project aimed to create a <strong>Recommendation Engine (RE)</strong> that suggests anonymization strategies for <strong>data deidentification</strong> and <strong>document deidentification</strong> workflows. The focus was on building a system that improves user experience by suggesting strategies based on what has worked in the past.
+
+We built two separate engines:
+- One for <strong>Data Deidentification</strong>
+- Another for <strong>Document Deidentification</strong>
+
+Each recommendation engine evolved from a <strong>SQL-based frequency ranking</strong> system to a <strong>Machine Learning-powered</strong> model as more data became available.
+</p>
+
+<h2>✨ Business Need</h2>
+<p>
+Users often need to anonymize sensitive fields, but choosing the right strategy manually is slow and inconsistent. The recommendation engine was designed to:
+<ul>
+  <li>Reduce manual efforts</li>
+  <li>Suggest effective strategies automatically</li>
+  <li>Learn and improve over time</li>
+</ul>
+
+<blockquote>"Give users the best-fit anonymization strategy based on real-world patterns, not guesswork."</blockquote>
+</p>
+
+<h2>🧩 Phase 1: SQL-Based Recommendation Engine</h2>
+<p><strong>Why SQL first?</strong> Initially, we had limited data to build a machine learning model. So, we developed a logic-based engine using historical data.</p>
+
+<h3>How It Worked</h3>
+<ul>
+  <li>Pulled anonymization logs from the backend database</li>
+  <li>Merged information across tables</li>
+  <li>Grouped and ranked strategies based on:
+    <ul>
+      <li>Variable name</li>
+      <li>Variable type</li>
+      <li>Dataset type</li>
+    </ul>
+  </li>
+  <li>The most frequently applied strategy was shown as <strong>Recommended</strong>; others as <strong>Suggested</strong></li>
+</ul>
+
+<h4>Visual Flow:</h4>
+<pre>
+User applies strategy → System logs it → DB updates → SQL fetches frequency → Recommendations ranked and shown
+</pre>
+
+<h2>🤖 Phase 2: Machine Learning-Based Recommendation Engine</h2>
+
+<p>As user interactions grew, the data volume reached a threshold that made ML feasible.</p>
+
+<h3>Data Pipeline</h3>
+<ul>
+  <li><strong>Target Variable:</strong> Applied Strategy</li>
+  <li><strong>Features:</strong>
+    <ul>
+      <li>Variable name (text)</li>
+      <li>Variable type</li>
+      <li>Dataset type</li>
+      <li>Metadata fields</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Preprocessing</h3>
+<ul>
+  <li>Removed unrelated fields</li>
+  <li>Applied <strong>TF-IDF Vectorization</strong> on text columns</li>
+  <li>Trained on historical strategy data</li>
+</ul>
+
+<h3>Model Selection</h3>
+<ul>
+  <li>Tested several models</li>
+  <li><strong>Random Forest</strong> performed best in both modules</li>
+  <li>New inputs are processed by this model to give ranked strategy recommendations</li>
+</ul>
+
+<h4>Deployment Flow:</h4>
+<pre>
+User submits variable → Model predicts strategy → System displays ranked list → Logs update DB → Future training data grows
+</pre>
+
+<h2>🎯 Impact</h2>
+<ul>
+  <li><strong>Improved speed:</strong> No manual searching for strategies</li>
+  <li><strong>Better accuracy:</strong> Data-driven suggestions</li>
+  <li><strong>Smarter engine:</strong> Adapts as more data is collected</li>
+</ul>
+
+<blockquote>What started as a rules engine evolved into a self-learning recommender.</blockquote>
+
+<h2>📈 Updated Flowchart (Conceptual)</h2>
+<pre>
+Smart Anonymization Strategy Recommendation Engine
+
+User Anonymizes Data
+        ↓
+Logs Saved to Database
+        ↓
+SQL Engine Ranks Strategy Frequency
+        ↓
+Initial Recommendations Shown
+        ↓
+ML Pipeline Trained Over Time
+        ↓
+Random Forest Model Predicts Best Strategy
+        ↓
+ML Recommendations Shown to User
+        ↓
+Logs Saved to Database
+</pre>
+
+<h2>💡 Future Enhancements</h2>
+<ul>
+  <li>Use real-time feedback to retrain models</li>
+  <li>Introduce reinforcement learning to improve dynamically</li>
+  <li>Integrate with compliance checks (e.g., HIPAA, GDPR)</li>
+</ul>
+
+<h2>📘 Summary Table</h2>
+
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr><td>Tools Covered</td><td>Data & Document Deidentification</td></tr>
+  <tr><td>Initial Method</td><td>SQL-based strategy ranking</td></tr>
+  <tr><td>Upgrade Path</td><td>ML with Random Forest + TF-IDF</td></tr>
+  <tr><td>Benefit</td><td>Auto-suggests best-fit anonymization strategies</td></tr>
+</table>
+
+</div>
+
+<footer>
+  &copy; 2025 Manju Yadav. All rights reserved.
+</footer>
+
+</body>
+</html>
