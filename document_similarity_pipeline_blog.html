@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Building a Document Similarity Pipeline</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            line-height: 1.6;
+            background-color: #fafafa;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        code {
+            background-color: #eee;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #eee;
+            padding: 1em;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Building a Document Similarity Pipeline: A Hybrid of NLP and Rule-Based Matching</h1>
+
+<p>When comparing documents for consistency, verifying if key sections are present, correctly titled, and meaningfully aligned across different files can be a major challenge. This is especially true when one document is highly detailed and the other is a summarized or reformatted version. Titles might differ, sections might be merged, and content might be paraphrased — making simple keyword matching insufficient.</p>
+
+<p>To address this challenge, we built a <strong>Document Similarity Pipeline</strong> — an NLP-driven, rule-enhanced solution that enables users to automatically verify if sections between documents match, partially match, or do not match at all.</p>
+
+<h2>Problem Overview</h2>
+<ul>
+<li>Compare a reference document against one or more target documents</li>
+<li>Verify section presence and alignment</li>
+<li>Identify three outcomes: Match, Partial Match, No Match</li>
+</ul>
+
+<h2>Solution Design</h2>
+<p>Our solution includes:</p>
+<ol>
+<li><strong>Document Parsing and Section Extraction</strong></li>
+<li><strong>Embedding-Based Semantic Matching</strong></li>
+<li><strong>Hybrid Matching Logic with Rules</strong></li>
+</ol>
+
+<h2>Key Implementation Highlights</h2>
+<h3>1. Extracting Document Structure</h3>
+<pre><code>def get_headings_and_subheadings_with_text(doc):
+    headings = {}
+    index = 0
+    for paragraph in doc.paragraphs:
+        if paragraph.style.name.startswith('Heading'):
+            # Process heading, subheadings, and bullet points
+</code></pre>
+
+<h3>2. Creating Semantic Embeddings</h3>
+<pre><code>model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+embeddings = model.encode(preprocessed_texts, convert_to_tensor=True)
+</code></pre>
+
+<h3>3. Fast Similarity Search with FAISS</h3>
+<pre><code>index = faiss.IndexFlatIP(dimension)  # Inner Product (cosine similarity)
+index.add(embeddings)
+</code></pre>
+
+<h3>4. Match Scoring and Interpretation</h3>
+<pre><code>def get_match_type(score):
+    if score >= 0.8:
+        return "Full Match"
+    elif score >= 0.5:
+        return "Partial Match"
+    else:
+        return "No Match"
+</code></pre>
+
+<h2>Final Output</h2>
+<p>The pipeline produces match reports including:</p>
+<ul>
+<li>Reference section text</li>
+<li>Best matching target section</li>
+<li>Similarity score</li>
+<li>Match type</li>
+</ul>
+
+<h2>Challenges and Lessons Learned</h2>
+<ul>
+<li>Summarized content leads to partial matches</li>
+<li>Section name variability requires mapping logic</li>
+<li>FAISS enables fast and scalable search</li>
+</ul>
+
+<h2>Future Enhancements</h2>
+<ul>
+<li>Advanced preprocessing (e.g., coreference resolution)</li>
+<li>Learning-based section mapping</li>
+<li>Explanation-based match summaries</li>
+</ul>
+
+<h2>Conclusion</h2>
+<p>This system is a powerful demonstration of combining rule-based logic and semantic similarity to tackle complex document verification problems. It can be adapted to legal, technical, or policy documentation analysis wherever structured comparison is essential.</p>
+
+</body>
+</html>
